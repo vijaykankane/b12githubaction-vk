@@ -28,5 +28,14 @@ jobs:
           source: ./
           target: /home/ubuntu
 
+      - name: SSH and copy to /var/www/html
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            sudo cp /home/ubuntu/* /var/www/html
 
 
